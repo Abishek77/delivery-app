@@ -42,9 +42,62 @@ const Login = () => {
       axios
         .get('https://minitgo.com/api/delivery_boy_reg.php')
         .then((response) => {
-          console.log('response', response);
+          console.log('response', response.data.data);
          
-          navigate('/dashboard');
+        
+          if (response.data && response.data.data.length > 0) {
+            const allUsers = response.data.data;
+           
+            // Check if the userid is an email or a phone number
+            const foundUser = allUsers.find(
+              (user) => user.email === data.userid || user.phone_number === data.userid
+            );
+ 
+            if (foundUser) {
+              if (foundUser.password === data.password) {
+                
+                console.log("Login successful");
+               
+                toast.success("Login successful", {
+                  autoClose: 1000,
+                  hideProgressBar: true,
+                });
+                navigate('/dashboard');
+ 
+                const userData = {
+                  userId: foundUser.dbid,
+                  fullName: foundUser.name,
+                  phoneNumber: foundUser.phone,
+                  email: foundUser.email,
+                  address: foundUser.address
+                };
+ 
+                localStorage.setItem("user", JSON.stringify(userData));
+ 
+                console.log("FOUND USER:", userData);
+ 
+                setUsername("");
+                setPassword("");
+              } else {
+                toast.error("Invalid Password", {
+                  autoClose: 1000,
+                  hideProgressBar: true,
+                });
+                console.log("Invalid password");
+              }
+            } else {
+              toast.error("Invalid Email or Phone Number", {
+                autoClose: 1000,
+                hideProgressBar: true,
+              });
+              console.log("Invalid email or phone number");
+            }
+          } else {
+            toast.error("Server Error", {
+              autoClose: 1000,
+              hideProgressBar: true,
+            });
+          }
         })
         .catch((error) => {
           console.error('Failed to fetch user information:', error);
