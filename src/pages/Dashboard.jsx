@@ -14,7 +14,7 @@ const Dashboard = () => {
           "https://minitgo.com/api/delivery_boy_orders.php"
         );
         const result = await response.json();
-        console.log(result); // Log the API response to inspect its structure
+        // console.log(result); // Log the API response to inspect its structure
         setData(result.data || []); // Assuming the data you need is in `result.orders`
         setLoading(false);
       } catch (error) {
@@ -25,7 +25,7 @@ const Dashboard = () => {
 
     fetchData();
   }, []);
-  console.log(data);
+  // console.log(data);
   if (loading) {
     return <div className="text-center p-4">Loading...</div>;
   }
@@ -34,7 +34,7 @@ const Dashboard = () => {
     return <div className="text-center p-4">No data available</div>;
   }
   const profile=()=>{
-    navigate("/dashboard")
+    navigate("/profile")
   }
 
   return (
