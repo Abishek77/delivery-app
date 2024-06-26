@@ -7,12 +7,14 @@ import "react-toastify/dist/ReactToastify.css";
 import Dashboard from './pages/Dashboard';
 import Footer from './components/common/Footer';
 import Profile from './pages/Profile';
+import Header from './components/common/Header';
 
 function App() {
 
 
   return (
     <>
+    <Header/>
     <Routes>
     <Route path='/' element={ <Login/>}/>
       <Route path='dashboard' element={<Dashboard/>}/>
