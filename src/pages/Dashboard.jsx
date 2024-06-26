@@ -14,8 +14,7 @@ const Dashboard = () => {
           "https://minitgo.com/api/delivery_boy_orders.php"
         );
         const result = await response.json();
-        // console.log(result); // Log the API response to inspect its structure
-        setData(result.data || []); // Assuming the data you need is in `result.orders`
+        setData(result.data || []); 
         setLoading(false);
       } catch (error) {
         console.error("Error fetching the data", error);
@@ -36,79 +35,6 @@ const Dashboard = () => {
   console.log(data);
 
   return (
-    // <div className="dashboard ">
-    //     <div className="p-2">
-    //       {data.map((item,index) => (
-    //         <div key={index} className="bg-gray-50  p-4 rounded-lg mb-4">
-    //           <div className="text-gray-600 mb-2">
-    //             <p className="flex items-center">
-
-    //             </p>
-    //             <p className="flex items-center">
-    //               <svg
-    //                 className="w-5 h-5 mr-2"
-    //                 fill="none"
-    //                 stroke="currentColor"
-    //                 viewBox="0 0 24 24"
-    //                 xmlns="http://www.w3.org/2000/svg"
-    //               >
-    //                 <path
-    //                   strokeLinecap="round"
-    //                   strokeLinejoin="round"
-    //                   strokeWidth="2"
-    //                   d="M3 10h18M3 15h18m-2 10a1 1 0 001-1v-5a1 1 0 00-1-1H5a1 1 0 00-1 1v5a1 1 0 001 1h14z"
-    //                 ></path>
-    //               </svg>
-    //               A-58, Valam nagar Soc., Varachha, Surat
-    //             </p>
-    //           </div>
-    //           <div className="flex justify-between mb-2 ">
-    //             <div className="flex items-center">
-    //               <svg
-    //                 className="w-5 h-5 mr-2"
-    //                 fill="none"
-    //                 stroke="currentColor"
-    //                 viewBox="0 0 24 24"
-    //                 xmlns="http://www.w3.org/2000/svg"
-    //               >
-    //                 <path
-    //                   strokeLinecap="round"
-    //                   strokeLinejoin="round"
-    //                   strokeWidth="2"
-    //                   d="M12 8v4l3 3"
-    //                 ></path>
-    //               </svg>
-    //               8:00 AM
-    //             </div>
-    //             <div className="flex items-center">
-    //               <svg
-    //                 className="w-5 h-5 mr-2"
-    //                 fill="none"
-    //                 stroke="currentColor"
-    //                 viewBox="0 0 24 24"
-    //                 xmlns="http://www.w3.org/2000/svg"
-    //               >
-    //                 <path
-    //                   strokeLinecap="round"
-    //                   strokeLinejoin="round"
-    //                   strokeWidth="2"
-    //                   d="M12 8v4l3 3"
-    //                 ></path>
-    //               </svg>
-    //               4:00 PM
-    //             </div>
-    //           </div>
-    //           <div className="flex justify-between items-center">
-    //             <span>Approx: 5 km</span>
-    //             <div className="flex gap-2">
-    //               <button className="bg-green-500 text-white px-3 py-1 rounded-full ">Accept</button>
-    //               <button className="bg-red-500 text-white px-3 py-1 rounded-full">Reject</button>
-    //             </div>
-    //           </div>
-    //         </div>
-    //       ))}
-    //     </div>
-    //   </div>
     <div className="mb-20">
       {data.map((item, index) => {
         return (
@@ -146,22 +72,6 @@ const Dashboard = () => {
                     </button>
                   </div>
                 </div>
-              {/* <div className="border-t border-gray-200 pt-4">
-                <h4 className="font-semibold">Client Details</h4>
-                <p>Name: {item.client_name}</p>
-                <p>Coordinates: {item.client_coordinates}</p>
-              </div>
-              <div className="border-t border-gray-200 pt-4">
-                <h4 className="font-semibold">User Details</h4>
-                <p>User ID: {item.user_id}</p>
-                <p>Coordinates: {item.user_coordinates}</p>
-              </div>
-              <div className="border-t border-gray-200 pt-4">
-                <h4 className="font-semibold">Order Details</h4>
-                <p>Payment Mode: {item.payment_mode}</p>
-                <p>Order Status: {item.product_status}</p>
-                <p>Time: {item.time}</p>
-              </div> */}
             </div>
           </div>
         );
