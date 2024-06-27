@@ -37,7 +37,7 @@ const DeliveryList = () => {
       <div className="mb-20">
         {data.map((item, index) => {
           return (
-            <div className="bg-white rounded-lg shadow-md p-2 my-2">
+            <div className="bg-white rounded-lg shadow-md p-3 my-2">
               <div class="flex justify-between  ">
                 <div class="flex-1 flex items-center justify-center py-2">
                   <img

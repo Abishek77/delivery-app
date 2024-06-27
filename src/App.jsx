@@ -8,6 +8,7 @@ import Footer from "./components/common/Footer";
 import Profile from "./pages/Profile";
 import Header from "./components/common/Header";
 import DeliveryList from "./pages/DeliveryList";
+import Earnings from "./pages/Earnings";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="deliveries" element={<DeliveryList />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="earnings" element={<Earnings />} />
       </Routes>
 
       <ToastContainer />

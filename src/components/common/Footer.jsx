@@ -39,7 +39,7 @@ function Footer() {
           <span className="text-sm">My Delivery</span>
         </Link>
         <Link
-        
+          to={"/earnings"}
           className={`flex flex-col items-center text-light no-underline ${activeButton === 'earnings' ? 'text-orange-500' : 'text-gray-500'}`}
           onClick={() => handleButtonClick('earnings')}
         >
