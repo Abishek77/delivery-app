@@ -7,7 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import Footer from "./components/common/Footer";
 import Profile from "./pages/Profile";
 import Header from "./components/common/Header";
-import DeliveryDetails from "./pages/DeliveryDetails";
+import DeliveryList from "./pages/DeliveryList";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="deliveries" element={<DeliveryDetails />} />
+        <Route path="deliveries" element={<DeliveryList />} />
         <Route path="profile" element={<Profile />} />
       </Routes>
 
