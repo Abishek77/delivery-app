@@ -57,7 +57,7 @@ function Header() {
             <li>
               <Link
                 to="/dashboard"
-                className="flex items-center text-gray-700 hover:text-gray-900 transition-colors duration-200"
+                className="flex no-underline items-center text-gray-700 hover:text-gray-900 transition-colors duration-200"
               >
                 <svg
                   className="w-6 h-6 mr-3"
@@ -79,7 +79,7 @@ function Header() {
             <li>
               <Link
                 to="/profile"
-                className="flex items-center text-gray-700 hover:text-gray-900 transition-colors duration-200"
+                className="flex items-center no-underline text-gray-700 hover:text-gray-900 transition-colors duration-200"
               >
                 <svg
                   className="w-6 h-6 mr-3"
@@ -101,7 +101,7 @@ function Header() {
             <li>
               <Link
                 to="/dashboard"
-                className="flex items-center text-gray-700 hover:text-gray-900 transition-colors duration-200"
+                className="flex items-center no-underline text-gray-700 hover:text-gray-900 transition-colors duration-200"
               >
                 <svg
                   className="w-6 h-6 mr-3"
