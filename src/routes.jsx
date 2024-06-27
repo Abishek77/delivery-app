@@ -6,6 +6,7 @@ import DeliveryList from './pages/DeliveryList';
 import DeliveryDetails from './pages/DeliveryDetails';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
+import Home from './pages/Home';
 
 const AppRoutes = () => (
   <Routes>

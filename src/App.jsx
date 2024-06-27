@@ -7,15 +7,16 @@ import Dashboard from "./pages/Dashboard";
 import Footer from "./components/common/Footer";
 import Profile from "./pages/Profile";
 import Header from "./components/common/Header";
-import Home from "./pages/Home";
+import DeliveryDetails from "./pages/DeliveryDetails";
 
 function App() {
   return (
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login />} />
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="deliveries" element={<DeliveryDetails />} />
         <Route path="profile" element={<Profile />} />
       </Routes>
 

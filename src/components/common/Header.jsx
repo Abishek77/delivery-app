@@ -32,11 +32,14 @@ function Header() {
             </button>
             <div className="text-lg font-semibold text-light">minitgo</div>
             <div className="relative">
+              <Link to={"/profile"}>
               <img
                 src="https://via.placeholder.com/150"
                 alt="profile"
-                className="w-10 h-10 rounded-full"
+                className="w-10 h-10 rounded-full "
+                
               />
+              </Link>
             </div>
           </div>
         </div>
@@ -53,7 +56,7 @@ function Header() {
           <ul className="space-y-4">
             <li>
               <Link
-                to="/"
+                to="/dashboard"
                 className="flex items-center text-gray-700 hover:text-gray-900 transition-colors duration-200"
               >
                 <svg
