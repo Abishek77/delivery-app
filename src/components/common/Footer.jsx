@@ -9,11 +9,11 @@ function Footer() {
   };
   return (
     <footer className='fixed-bottom'>
-      <div className="fixed bottom-0 left-0 w-full bg-white shadow-md">
+      <div className="fixed bottom-0 left-0 w-full bg-secondary shadow-md">
       <div className="flex justify-around py-2">
         <Link
         to={"/dashboard"}
-          className={`flex flex-col items-center no-underline ${activeButton === 'dashboard' ? 'text-orange-500' : 'text-gray-500'}`}
+          className={`flex flex-col items-center text-light no-underline ${activeButton === 'dashboard' ? 'text-orange-500' : 'text-gray-500'}`}
           onClick={() => handleButtonClick('dashboard')}
         >
           <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-layout-dashboard">
@@ -26,7 +26,7 @@ function Footer() {
         </Link>
         <Link
         to={"/deliveries"}
-          className={`flex flex-col items-center no-underline ${activeButton === 'delivery' ? 'text-orange-500' : 'text-gray-500'}`}
+          className={`flex flex-col items-center text-light no-underline ${activeButton === 'delivery' ? 'text-orange-500' : 'text-gray-500'}`}
           onClick={() => handleButtonClick('delivery')}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-truck">
@@ -40,7 +40,7 @@ function Footer() {
         </Link>
         <Link
         
-          className={`flex flex-col items-center no-underline ${activeButton === 'earnings' ? 'text-orange-500' : 'text-gray-500'}`}
+          className={`flex flex-col items-center text-light no-underline ${activeButton === 'earnings' ? 'text-orange-500' : 'text-gray-500'}`}
           onClick={() => handleButtonClick('earnings')}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-dollar-sign">
@@ -52,7 +52,7 @@ function Footer() {
         </Link>
         <Link
         to={"/profile"}
-          className={`flex flex-col items-center no-underline ${activeButton === 'profile' ? 'text-orange-500' : 'text-gray-500'}`}
+          className={`flex flex-col items-center  text-light no-underline ${activeButton === 'profile' ? 'text-orange-500' : 'text-gray-500'}`}
           onClick={() => handleButtonClick('profile')}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user">

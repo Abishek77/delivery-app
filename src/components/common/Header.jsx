@@ -11,12 +11,12 @@ function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-white shadow-md py-4">
+      <header className="sticky top-0 z-50 bg-success shadow-md py-4">
         <div className="w-full max-w-md mx-auto">
           <div className="flex justify-between items-center px-3">
             <button className="text-gray-500" onClick={toggleSidebar}>
               <svg
-                className="w-6 h-6"
+                className="w-6 h-6 text-light"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -30,7 +30,7 @@ function Header() {
                 ></path>
               </svg>
             </button>
-            <div className="text-lg font-semibold">minitgo</div>
+            <div className="text-lg font-semibold text-light">minitgo</div>
             <div className="relative">
               <img
                 src="https://via.placeholder.com/150"
