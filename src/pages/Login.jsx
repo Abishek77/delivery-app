@@ -114,12 +114,13 @@ const Login = () => {
       <div className="row">
         <div className="col-md-6 offset-md-3">
           <div className="card my-5">
-            <form className="card-body cardbody-color p-lg-5" onSubmit={handleSubmit}>
+            <form className="card-body   rounded  p-lg-5" onSubmit={handleSubmit}>
               <div className="text-center mb-2 pb-2">
-                <h2>Delivery Partner</h2>
+                <h2 className='text-secondary fs-1'>Login</h2>
+                <p className=' fs-6 text-success'>Delivery partner's</p>
               </div>
               <div className="mb-3">
-                <label className="mb-2">Email/Phone Number</label>
+                <label className="mb-2">Email/Phone</label>
                 <input
                   type="text"
                   className="form-control"
@@ -137,9 +138,9 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-              </div>
-              <div className="text-end">
-                <button type="submit" className="btn btn-primary px-4 mb-2">
+              </div><br></br>
+              <div className="text-center">
+                <button type="submit" className="btn btn-secondary px-5 mb-3">
                   Login
                 </button>
               </div>
