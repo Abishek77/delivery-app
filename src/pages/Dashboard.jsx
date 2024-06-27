@@ -14,7 +14,7 @@ const Dashboard = () => {
           "https://minitgo.com/api/delivery_boy_orders.php"
         );
         const result = await response.json();
-        setData(result.data || []); 
+        setData(result.data || []);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching the data", error);
@@ -38,46 +38,50 @@ const Dashboard = () => {
     <div className="mb-20">
       {data.map((item, index) => {
         return (
-          <div className="max-w-md mx-auto bg-gray-50  rounded-xl shadow-md overflow-hidden md:max-w-2xl p-6 my-6 ">
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold">
-                  Order ID: {item.order_id}
-                </h2>
-                <span className="text-gray-500 text-sm">
-                  {new Date(item.date).toLocaleString()}
-                </span>
-              </div>
-              <div className="flex gap-4">
+          <div className="bg-white rounded-lg shadow-md p-2 my-2">
+            <div class="flex justify-between  ">
+              <div class="flex-1 flex items-center justify-center py-2">
                 <img
                   src={item.product_image}
                   alt={item.product_name}
-                  className="w-24 h-24 object-cover rounded-lg"
+                  className="w-28 h-36 object-cover  rounded-lg bg-black"
                 />
-                <div>
-                  <h3 className="text-lg font-semibold">{item.product_name}</h3>
-                  <p className="text-gray-500">Product ID: {item.product_id}</p>
-                  <p className="text-gray-500">Color: {item.product_color}</p>
-                  <p className="text-gray-500">Quantity: {item.quantity}</p>
-                  <p className="text-gray-500">Price: ${item.product_price}</p>
-                </div>
               </div>
-                <div className="flex justify-end gap-4  border-gray-200">
-                  <div className="flex gap-2">
-                    <button className="bg-green-500 text-white px-3 py-1 rounded-full ">
-                      Accept
-                    </button>
-                    <button className="bg-red-500 text-white px-3 py-1 rounded-full">
-                      Reject
-                    </button>
+              <div class="flex-1   ">
+                <div>
+                  <p className="text-gray-500 text-sm m-0">
+                    {new Date(item.date).toLocaleString()}
+                  </p>
+                  <h2 className="text-lg font-semibold m-0">
+                    Order ID: {item.order_id}
+                  </h2>
+                  <div className="flex items-center justify-between m-0">
+                    <p className="m-0 text-sm">{item.product_name}</p>
+                    <p className="m-0 text-sm">Color: {item.product_color}</p>
                   </div>
+                  <div className="flex items-center justify-between m-0">
+                    <p className="m-0 text-sm">Quantity: {item.quantity}</p>
+                    <p className="m-0 text-sm">Price: ${item.product_price}</p>
+                  </div>
+                  <p className="mt-1 text-sm">Product ID: {item.product_id}</p>
                 </div>
+                <div >
+                 <div className="flex items-center justify-between gap-2 ">
+                   <button className="bg-green-500 text-white px-3 py-1 rounded-full ">
+                     Accept
+                   </button>
+                   <button className="bg-red-500 text-white px-3 py-1 rounded-full">
+                     Reject
+                   </button>
+                 </div>
+               </div>
+              </div>
             </div>
           </div>
         );
       })}
     </div>
   );
-};
+}
 
-export default Dashboard;
+export default Dashboard

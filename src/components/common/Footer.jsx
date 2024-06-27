@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Footer() {
-  const [activeButton, setActiveButton] = useState('dashboard');
+  const [activeButton, setActiveButton] = useState('/');
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
