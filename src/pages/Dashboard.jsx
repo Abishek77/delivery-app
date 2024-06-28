@@ -5,65 +5,68 @@ import axios from "axios";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const signInData = localStorage.getItem("user");
+  const [loading, setLoading] = useState(true);
+  const signInData = localStorage.getItem("user");
   const parsedSignInData = JSON.parse(signInData);
-  console.log("parsedSignInData", parsedSignInData)
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch(
-            "https://minitgo.com/api/delivery_boy_orders.php"
-          );
-          const result = await response.json();
-          setData(result.data || []);
-          setLoading(false);
-        } catch (error) {
-          console.error("Error fetching the data", error);
-          setLoading(false);
-        }
-      };
-  
-      fetchData();
-    }, []);
-    const handleAction = async (item, action) => {
-      const payload = {
-        oid: item.oid,
-        delivery_boy_id: parsedSignInData.userId,
-        delivery_boy_name: parsedSignInData.fullName,
-        delivery_boy_coordinates_from: "40.7128,-74.0060", 
-        product_status: action === 'accept' ? 'accepted' : 'rejected',
-        delivery_boy_phonenumber: parsedSignInData.phoneNumber
-        
-      };
-      console.log(payload);
+  console.log("parsedSignInData", parsedSignInData);
+
+  useEffect(() => {
+    const fetchData = async () => {
       try {
-        const response = await axios.post("https://minitgo.com/api/delivery_boy_orders_update.php", payload);
-  
-        console.log("Axios Response:", response);
-  
-        if (response.data.status === "success") {
-          
-          console.error("Failed to perform action:", response.data.message);
-        }
+        const response = await fetch(
+          "https://minitgo.com/api/delivery_boy_orders.php"
+        );
+        const result = await response.json();
+        setData(result.data || []);
+        setLoading(false);
       } catch (error) {
-        console.error("Error performing action:", error);
+        console.error("Error fetching the data", error);
+        setLoading(false);
       }
     };
-    // console.log(data);
-    if (loading) {
-      return <div className="text-center p-4">Loading...</div>;
+
+    fetchData();
+  }, []);
+  const handleAction = async (item, action) => {
+    const payload = {
+      oid: item.oid,
+      delivery_boy_id: parsedSignInData.userId,
+      delivery_boy_name: parsedSignInData.fullName,
+      delivery_boy_coordinates_from: "40.7128,-74.0060",
+      product_status: action === "accept" ? "accepted" : "rejected",
+      // product_status:"cancled",
+      delivery_boy_phonenumber: parsedSignInData.phoneNumber,
+    };
+    console.log(payload);
+    try {
+      const response = await axios.post(
+        "https://minitgo.com/api/delivery_boy_orders_update.php",
+        payload
+      );
+
+      console.log("Axios Response:", response);
+
+      if (response.data.status === true) {
+        console.error("Failed to perform action:", response.data.message);
+        window.location.reload()
+      }
+    } catch (error) {
+      console.error("Error performing action:", error);
     }
-  
-    if (!Array.isArray(data)) {
-      return <div className="text-center p-4">No data available</div>;
-    }
-    console.log(data);
+  };
+  // console.log(data);
+  if (loading) {
+    return <div className="text-center p-4">Loading...</div>;
+  }
+
+  if (!Array.isArray(data)) {
+    return <div className="text-center p-4">No data available</div>;
+  }
+  console.log(data);
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center">
       <div className="w-full max-w-md bg-white shadow-md rounded-lg p-3 mb-11">
-      {data.map((item, index) => {
+        {data.map((item, index) => {
           return (
             <div className="bg-white rounded-lg shadow-md p-3 my-2">
               <div class="flex justify-between  ">
@@ -88,24 +91,30 @@ const Dashboard = () => {
                     </div>
                     <div className="flex items-center justify-between m-0">
                       <p className="m-0 text-sm">Quantity: {item.quantity}</p>
-                      <p className="m-0 text-sm">Price: ${item.product_price}</p>
+                      <p className="m-0 text-sm">
+                        Price: ${item.product_price}
+                      </p>
                     </div>
-                    <p className="mt-1 text-sm">Product ID: {item.product_id}</p>
+                    <p className="mt-1 text-sm">
+                      Product ID: {item.product_id}
+                    </p>
                   </div>
-                  <div >
-                   <div className="flex items-center justify-between gap-2 ">
-                     <button
-                     onClick={() => handleAction(item, 'accept')}
-                      className="bg-green-500 text-white px-3 py-1 rounded-full ">
-                       Accept
-                     </button>
-                     <button 
-                     onClick={() => handleAction(item, 'reject')}
-                     className="bg-red-500 text-white px-3 py-1 rounded-full">
-                       Reject
-                     </button>
-                   </div>
-                 </div>
+                  <div>
+                    <div className="flex items-center justify-between gap-2 ">
+                      <button
+                        onClick={() => handleAction(item, "accept")}
+                        className="bg-green-500 text-white px-3 py-1 rounded-full "
+                      >
+                        Accept
+                      </button>
+                      <button
+                        onClick={() => handleAction(item, "reject")}
+                        className="bg-red-500 text-white px-3 py-1 rounded-full"
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
