@@ -149,7 +149,7 @@ const DeliveryList = () => {
         <h2 className=" mx-2 text-2xl font-bold mt-8">Rejected Orders</h2>
         <div>
           {rejectedOrders.length > 0 ? (
-            renderOrders(rejectedOrders)
+            renderOrders(rejectedOrders,false, true)
           ) : (
             <p>No rejected orders available</p>
           )}
