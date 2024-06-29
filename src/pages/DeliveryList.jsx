@@ -6,6 +6,9 @@ const DeliveryList = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const signInData = localStorage.getItem("user");
+  const [otp, setOtp] = useState('');
+  const [enteredOtp, setEnteredOtp] = useState('');
+  const [otpMessage, setOtpMessage] = useState('OTP Sent message here!')
   const parsedSignInData = JSON.parse(signInData);
   console.log("parsedSignInData", parsedSignInData);
 
@@ -25,6 +28,20 @@ const DeliveryList = () => {
       setLoading(false);
     }
   };
+  const generateOTP = () => {
+    const otp = Math.floor(1000 + Math.random() * 9000);
+    return otp.toString();
+  };
+  const handleSendOTP = () => {
+    const generatedOTP = generateOTP();
+    setOtp(generatedOTP);
+    console.log("Generated OTP:", generatedOTP);
+
+    // Simulate sending OTP (e.g., via SMS)
+    // You can integrate an SMS API here to send the OTP to the user
+    // alert(`OTP sent: ${generatedOTP}`);
+  };
+
   const handleAction = async (item, action) => {
     const payload = {
       oid: item.oid,
@@ -52,6 +69,17 @@ const DeliveryList = () => {
       console.error("Error performing action:", error);
     }
   };
+  const handleMarkAsDone = () => {
+    if (enteredOtp === otp) {
+      setOtpMessage('OTP matches!');
+      
+      // handleAction(item, 'done');
+    } else {
+      setOtpMessage('OTP does not match. Please try again.');
+      window.location.reload();
+    }
+    setEnteredOtp("")
+  };
   // console.log(data);
   if (loading) {
     return <div className="text-center p-4">Loading...</div>;
@@ -77,13 +105,21 @@ const DeliveryList = () => {
   ) => {
     return orders.map((item, index) => (
       <div key={index} className="bg-white rounded-lg shadow-md p-3 my-2">
-        <div className="flex justify-between">
-          <div className="flex-1 flex items-center justify-center py-2">
+        <div className="flex justify-between ">
+          <div className="flex-1 flex items-center justify-center py-2 flex-col">
             <img
               src={item.product_image}
               alt={item.product_name}
               className="w-28 h-36 object-cover rounded-lg bg-black"
             />
+            {showCancelButton && (
+              <button
+                className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
+                onClick={() => handleAction(item, "cancled")}
+              >
+                Cancel Order
+              </button>
+            )}
           </div>
           <div className="flex-1">
             <div>
@@ -91,10 +127,13 @@ const DeliveryList = () => {
                 <p className="text-gray-500 text-sm m-0 ">
                   {new Date(item.date).toLocaleString()}
                 </p>
-                {(item.product_status === "accepted" || item.product_status === "rejected") && (
+                {(item.product_status === "accepted" ||
+                  item.product_status === "rejected") && (
                   <span
                     className={`ml-2 w-3 h-3 ${
-                      item.product_status === "accepted" ? "bg-green-500" : "bg-red-500"
+                      item.product_status === "accepted"
+                        ? "bg-green-500"
+                        : "bg-red-500"
                     } rounded-full`}
                   ></span>
                 )}
@@ -110,15 +149,25 @@ const DeliveryList = () => {
                 <p className="m-0 text-sm">Quantity: {item.quantity}</p>
                 <p className="m-0 text-sm">Price: ${item.product_price}</p>
               </div>
-              <p className="mt-1 text-sm">Product ID: {item.product_id}</p>
-              {showCancelButton && (
-                <button
-                  className="mt-2 px-4 py-2 bg-red-500 text-white rounded"
-                  onClick={() => handleAction(item, "cancled")}
+              <p className="mt-1 text-sm m-0">Product ID: {item.product_id}</p>
+              <div className="mt-2">
+                <p className="text-sm font-bold m-0">
+                  Location From:{" "}
+                  <span className="text-red-500 ">{item.user_coordinates}</span>
+                </p>
+                <p className="text-sm font-bold m-0">
+                  Location To:{" "}
+                  <span className="text-red-500">{item.client_coordinates}</span>
+                </p>
+                <a
+                   href={`https://www.google.com/maps/search/?api=1&query=${item.user_coordinates}`}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="text-sm text-blue-500"
                 >
-                  Cancel Order
-                </button>
-              )}
+                  Open in maps
+                </a>
+              </div>
               {showUndoButton && (
                 <button
                   className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
@@ -130,6 +179,33 @@ const DeliveryList = () => {
             </div>
           </div>
         </div>
+
+        {item.product_status === "accepted" && (
+          <div className="mt-4">
+            <div className="flex items-center gap-2 justify-between">
+              <input
+                type="text"
+                placeholder="Enter OTP"
+                value={enteredOtp}
+                onChange={(e) => setEnteredOtp(e.target.value)}
+                className="border p-1 rounded flex-1"
+              />
+              <button
+              onClick={handleMarkAsDone}
+               className="bg-red-700 text-white py-1 px-2 rounded w-full">
+                Mark as Done
+              </button>
+            </div>
+            <p className="text-base text-red-700 mt-2 mb-2 pl-1">
+              {otpMessage}
+            </p>
+            <button 
+            onClick={handleSendOTP}
+            className="bg-red-700 text-white px-7 py-2 rounded">
+              Send OTP
+            </button>
+          </div>
+        )}
       </div>
     ));
   };
@@ -149,7 +225,7 @@ const DeliveryList = () => {
         <h2 className=" mx-2 text-2xl font-bold mt-8">Rejected Orders</h2>
         <div>
           {rejectedOrders.length > 0 ? (
-            renderOrders(rejectedOrders,false, true)
+            renderOrders(rejectedOrders, false, true)
           ) : (
             <p>No rejected orders available</p>
           )}
